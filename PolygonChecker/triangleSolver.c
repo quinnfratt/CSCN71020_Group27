@@ -1,24 +1,36 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdbool.h>
 
 #include "triangleSolver.h"
 
-char* analyzeTriangle(int side1, int side2, int side3) {
-	char* result = "";
-	if (side1 <= 0 || side2 <= 0 || side3 <= 0) {
-		result = "Not a triangle";
+TRI GetTriangleSides() {
+	TRI t;
+	printf("Enter 3 Side Lengths: ");
+	while (1) {
+		if (scanf("%d %d %d", &t.side1, &t.side2, &t.side3) != 3) {
+			printf("Error: Must be 3 values");
+		}
+		else {
+			break;
+		}
 	}
-	else if (side1 == side2 && side1 == side3) {
-		result = "Equilateral triangle";
+	return t;
+}
+void AnalyzeTriangle(TRI t) {
+	if (t.side1 <= 0 || t.side2 <= 0 || t.side3 <= 0) {
+		printf("Not a triangle");
 	}
-	else if ((side1 == side2 && side1 != side3) || 
-		(side1 == side3 && side1 != side2))
+	else if (t.side1 == t.side2 && t.side1 == t.side3) {
+		printf("Equilateral triangle");
+	}
+	else if ((t.side1 == t.side2 && t.side1 != t.side3) || 
+		(t.side1 == t.side3 && t.side1 != t.side2))
 	{
-		result = "Isosceles triangle";
+		printf("Isosceles triangle");
 	}
 	else {
-		result = "Scalene triangle";
+		printf("Scalene triangle");
 	}
-
-	return result;
+	printf("\n");
 }

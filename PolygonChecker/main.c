@@ -17,11 +17,8 @@ int main() {
 		{
 		case 1:
 			printf_s("Triangle selected.\n");
-			int triangleSides[3] = { 0, 0, 0 };
-			int* triangleSidesPtr = getTriangleSides(triangleSides);
-			//printf_s("! %d\n", triangleSidesPtr[0]);
-			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
-			printf_s("%s\n", result);
+			TRI triangle = GetTriangleSides();
+			AnalyzeTriangle(triangle);
 			break;
 		case 0:
 			continueProgram = false;
@@ -52,13 +49,4 @@ int printShapeMenu() {
 	scanf_s("%1o", &shapeChoice);
 
 	return shapeChoice;
-}
-
-int* getTriangleSides(int* triangleSides) {
-	printf_s("Enter the three sides of the triangle: ");
-	for (int i = 0; i < 3; i++)
-	{
-		scanf_s("%d", &triangleSides[i]);
-	}
-	return triangleSides;
 }
