@@ -6,14 +6,18 @@
 
 TRI GetTriangleSides() {
 	TRI t;
+	int* buffer;
 	printf("Enter 3 Side Lengths: ");
+
 	while (1) {
 		if (scanf("%d %d %d", &t.side1, &t.side2, &t.side3) != 3) {
 			printf("Error: Must be 3 values");
+
 		}
-		else {
+			else 
+			{
 			break;
-		}
+			}
 	}
 	return t;
 }
