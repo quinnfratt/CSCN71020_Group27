@@ -6,7 +6,6 @@
 
 TRI GetTriangleSides() {
 	TRI t;
-	int* buffer;
 	printf("Enter 3 Side Lengths: ");
 
 	while (1) {
