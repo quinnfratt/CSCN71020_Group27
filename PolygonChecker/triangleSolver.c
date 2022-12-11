@@ -25,13 +25,16 @@ void AnalyzeTriangle(TRI* t) {
 	}
 	else if (t->side1 == t->side2 && t->side1 == t->side3) {
 		strcpy(t->triangleType, "An Equilateral triangle\0");
+		t->triangleTypeID = 2;
 	}
 	else if ((t->side1 == t->side2 && t->side1 != t->side3) || 
 		(t->side1 == t->side3 && t->side1 != t->side2)){
 		strcpy(t->triangleType, "An Isosceles triangle\0");
+		t->triangleTypeID = 3;
 	}
 	else {
 		strcpy(t->triangleType, "A Scalene triangle\0");
+		t->triangleTypeID = 4;
 	}
 }
 
