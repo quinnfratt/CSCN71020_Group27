@@ -1,12 +1,9 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
 #include "triangleSolver.h"
 
 TRI GetTriangleSides() {
 	TRI t;
+	*t.triangleType = NULL;
+	t.triangleTypeID = NULL;
 	printf("Enter 3 Side Lengths: ");
 
 	while (1) {
@@ -21,33 +18,33 @@ TRI GetTriangleSides() {
 	}
 	return t;
 }
-void AnalyzeTriangle(TRI t) {
-	if (t.side1 <= 0 || t.side2 <= 0 || t.side3 <= 0) {
-		printf("Not a triangle");
+void AnalyzeTriangle(TRI* t) {
+	if (t->side1 <= 0 || t->side2 <= 0 || t->side3 <= 0) {
+		strcpy(t->triangleType, "Not a triangle\0");
+		t->triangleTypeID = 1;
 	}
-	else if (t.side1 == t.side2 && t.side1 == t.side3) {
-		printf("Equilateral triangle");
+	else if (t->side1 == t->side2 && t->side1 == t->side3) {
+		strcpy(t->triangleType, "An Equilateral triangle\0");
 	}
-	else if ((t.side1 == t.side2 && t.side1 != t.side3) || 
-		(t.side1 == t.side3 && t.side1 != t.side2))
-	{
-		printf("Isosceles triangle");
+	else if ((t->side1 == t->side2 && t->side1 != t->side3) || 
+		(t->side1 == t->side3 && t->side1 != t->side2)){
+		strcpy(t->triangleType, "An Isosceles triangle\0");
 	}
 	else {
-		printf("Scalene triangle");
+		strcpy(t->triangleType, "A Scalene triangle\0");
 	}
-	printf("\n");
 }
 
 int* FindAngles(TRI t)
 {
-	int* angles = malloc(sizeof(int)*3);
-	if (angles == NULL)
+	int* angles = malloc(sizeof(int) * 3);
+	if (angles == NULL) {
 		printf("Error allocating memory");
+		exit(1);
+	}
 	double R, s, pi, area;
 	pi = acos(-1);
 
-	
 	s = ((double)(t.side1) + (double)(t.side2) + (double)(t.side3)) / 2;
 	area = sqrt(s * (s - (double)(t.side1)) * (s - (double)(t.side2)) * (s - (double)(t.side3)));
 
@@ -57,12 +54,8 @@ int* FindAngles(TRI t)
 	double angle2 = (180 / pi) * asin((double)(t.side2) / (2 * R));
 	double angle3 = (180 / pi) * asin((double)(t.side3) / (2 * R));
 
-	
-
-	angles[0] = ceil(angle1);
-	angles[1] = ceil(angle2);
-	angles[2] = ceil(angle3);
-	
+	angles[0] = round(angle1);
+	angles[1] = round(angle2);
+	angles[2] = round(angle3);
 	return angles;
-
-}
+} 

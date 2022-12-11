@@ -45,8 +45,10 @@ bool testCoord(char *coord){
 
 REC* createRectangle () {
 	REC* newRectangle = malloc(sizeof(REC));
-	if (newRectangle == NULL)
+	if (newRectangle == NULL) {
 		printf("Error allocating memory");
+		exit(1);
+	}
 	newRectangle->topL.xcoord = NULL, newRectangle->topL.ycoord = NULL;
 	newRectangle->topR.xcoord = NULL, newRectangle->topR.ycoord = NULL;
 	newRectangle->bottomL.xcoord = NULL, newRectangle->bottomL.ycoord = NULL;
@@ -111,8 +113,10 @@ Point* returnOrder(Point p1, Point p2, Point p3, Point p4) {
 
 Point* YOrder(Point p1, Point p2, Point p3, Point p4) {
 	Point *yorder = malloc(sizeof(Point) * 4);
-	if (yorder == NULL)
+	if (yorder == NULL) {
 		printf("Error allocating memory");
+		exit(1);
+	}
 	if (p1.ycoord == p2.ycoord) {
 		if (p1.ycoord > p3.ycoord) {
 			yorder[0] = p1, yorder[1] = p2, yorder[2] = p3, yorder[3] = p4;

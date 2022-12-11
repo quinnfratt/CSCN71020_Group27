@@ -16,7 +16,7 @@ int main() {
 		case 2:
 			
 			printf("Rectangle selected.\n");
-			printf("\nPlease enter the four points of the triange:");
+			printf("\nPlease enter the four points of the rectangle:");
 			Point pt1 = getPoint(1), pt2 = getPoint(2), pt3 = getPoint(3), pt4 = getPoint(4);
 			REC* rectangle = createRectangle();
 			if (!assignRectanglePoints(rectangle, pt1, pt2, pt3, pt4)) {
@@ -29,9 +29,14 @@ int main() {
 		case 1:
 			printf("Triangle selected.\n");
 			TRI triangle = GetTriangleSides();
-			AnalyzeTriangle(triangle);
+			AnalyzeTriangle(&triangle);
+			if (triangle.triangleTypeID == 1){
+				printf("\nThe Triangle Entered is: %s\n", triangle.triangleType);
+				break;
+			}
 			triResults = FindAngles(triangle);
-			printf("The Triangle Entered has these angles: %d %d %d\n\n", triResults[0], triResults[1], triResults[2]);
+			printf("\nThe Triangle Entered is: %s\n", triangle.triangleType);
+			printf("and has the following inner angles: %d %d %d\n\n", triResults[0], triResults[1], triResults[2]);
 			break;
 		case 0:
 			continueProgram = false;
