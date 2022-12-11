@@ -2,6 +2,9 @@
 
 int main() {
 	char results[MAXSTRINGLEN];
+	int* triResults = malloc(sizeof(int)*3);
+	if (triResults == NULL)
+		printf("error allocating memory");
 	bool continueProgram = true;
 	while (continueProgram) {
 		printWelcome();
@@ -27,6 +30,8 @@ int main() {
 			printf("Triangle selected.\n");
 			TRI triangle = GetTriangleSides();
 			AnalyzeTriangle(triangle);
+			triResults = FindAngles(triangle);
+			printf("The Triangle Entered has these angles: %d %d %d\n\n", triResults[0], triResults[1], triResults[2]);
 			break;
 		case 0:
 			continueProgram = false;
